@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -9,24 +8,33 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxCurrencyDirective } from 'ngx-currency';
+import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
 
 @Component({
   selector: 'app-form',
   standalone: true,
   imports: [
-    MatButtonModule,
-    MatInputModule,
-    MatDatepickerModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
     NgxCurrencyDirective,
   ],
-  providers: [provideNativeDateAdapter(), CurrencyPipe],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
 export class FormComponent implements OnInit {
+  public ngxCurrencyOption = {
+    prefix: '€',
+    thousands: '.',
+    decimal: ',',
+    precision: 2,
+    inputMode: NgxCurrencyInputMode.Natural,
+  };
   public form!: FormGroup;
 
   constructor(private fb: FormBuilder) {}
