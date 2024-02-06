@@ -5,12 +5,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
-import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
+import moment from 'moment';
+import { NgxCurrencyConfig, NgxCurrencyDirective } from 'ngx-currency';
+import { CURRENCY_CONFIG } from './utils/currency-option';
+import { MY_DATE_FORMAT } from './utils/my-date-format';
 
 @Component({
   selector: 'app-form',
@@ -23,25 +26,19 @@ import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
     MatInputModule,
     NgxCurrencyDirective,
   ],
-  providers: [provideNativeDateAdapter()],
+  providers: [provideMomentDateAdapter(MY_DATE_FORMAT)],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
 export class FormComponent implements OnInit {
-  public ngxCurrencyOption = {
-    prefix: '€',
-    thousands: '.',
-    decimal: ',',
-    precision: 2,
-    inputMode: NgxCurrencyInputMode.Natural,
-  };
   public form!: FormGroup;
+  public ngxCurrencyOption: NgxCurrencyConfig = CURRENCY_CONFIG;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      date: ['', Validators.required],
+      date: [moment(), Validators.required],
       currency: ['', [Validators.required, Validators.min(0)]],
     });
   }
@@ -49,7 +46,7 @@ export class FormComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       const { date, currency } = this.form.value;
-      console.log('Submitted date:', date.toISOString());
+      console.log('Submitted date:', moment(date).toDate());
       console.log('Submitted currency:', currency);
     }
   }
