@@ -1,0 +1,18 @@
+<section>
+  @if (storedData.length) {
+  <div class="container">
+    <div class="header">Date</div>
+    <div class="header">Amount</div>
+
+    @for (item of storedData; track item.date) {
+    <div class="item">{{ item.date | date:'mediumDate'}}</div>
+    <div class="item">{{ item.amount | currency:'EUR'}}</div>
+    }
+  </div>
+  }
+
+  @else {
+  <div class="empty">There are no items.</div>
+  }
+
+</section>

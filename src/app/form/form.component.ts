@@ -35,7 +35,7 @@ import { MY_DATE_FORMAT } from './utils/my-date-format';
 export class FormComponent {
   @Output() submitDataEvent = new EventEmitter<Data>();
 
-  public minDate: Date = new Date();
+  public minDate: Date = new Date(); // today's date
   public ngxCurrencyOption: NgxCurrencyConfig = CURRENCY_CONFIG;
   public form: FormGroup = this.fb.group({
     date: [new Date(), Validators.required],
@@ -50,13 +50,5 @@ export class FormComponent {
 
       this.form.reset({ date: new Date(), amount: 0 });
     }
-  }
-
-  public get date() {
-    return this.form.controls['date'];
-  }
-
-  public get amount() {
-    return this.form.controls['amount'];
   }
 }

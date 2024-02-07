@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+button.clear-button {
+  margin-top: 20px;
+  background-color: #df3b1c;
+  color: white;
+}
+
+.clear-button.mat-mdc-button-disabled {
+  background-color: #df3b1c8a;
+}

@@ -1,27 +1,42 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <mat-label>Choose a date</mat-label>
-    <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="date">
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+<section class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
 
-    <mat-error *ngIf="date.errors?.['matDatepickerMin']">
-      Date cannot be in the past
-    </mat-error>
+      @if (form.controls['date'].errors?.['matDatepickerMin']) {
+      <mat-error>
+        Date cannot be in the past
+      </mat-error>
+      }
 
-    <mat-error *ngIf="date.errors?.['required']">
-      Date is required
-    </mat-error>
-  </mat-form-field>
+      @else if (form.controls['date'].errors?.['matDatepickerParse']) {
+      <mat-error>
+        Date is invalid
+      </mat-error>
+      }
+
+      @else if (form.controls['date'].errors?.['required']) {
+      <mat-error>
+        Date is required
+      </mat-error>
+      }
+    </mat-form-field>
 
 
-  <mat-form-field>
-    <mat-label>Input amount</mat-label>
-    <input matInput formControlName="amount" currencyMask [options]="ngxCurrencyOption">
-    <mat-error *ngIf="amount.errors?.['required']">
-      Amount is required
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Input amount</mat-label>
+      <input matInput formControlName="amount" currencyMask [options]="ngxCurrencyOption">
 
-  <button mat-raised-button [disabled]="!form.valid" type="submit">Submit</button>
-</form>
+      @if (form.controls['amount'].errors?.['required']) {
+      <mat-error>
+        Amount is required
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <button mat-raised-button class="submit" [disabled]="!form.valid" type="submit">Submit</button>
+  </form>
+</section>

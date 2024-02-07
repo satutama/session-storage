@@ -1,0 +1,20 @@
+.container {
+  margin-top: 40px;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.primary.scss .mat-mdc-raised-button.primary {
+  color: #df6d1c;
+}
+
+button.submit {
+  background-color: #df6d1c;
+  color: white;
+}
+
+.submit.mat-mdc-button-disabled {
+  background-color: #97481094;
+}
