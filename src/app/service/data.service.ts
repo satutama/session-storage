@@ -26,6 +26,7 @@ export class DataService {
   }
 
   public clearValues(): void {
+    this.storedData = [];
     this.storedDataSubject.next(this.storedData);
     sessionStorage.removeItem('storedValues');
   }
