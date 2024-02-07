@@ -1,15 +1,27 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="date">
+    <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="date">
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+
+    <mat-error *ngIf="date.errors?.['matDatepickerMin']">
+      Date cannot be in the past
+    </mat-error>
+
+    <mat-error *ngIf="date.errors?.['required']">
+      Date is required
+    </mat-error>
   </mat-form-field>
+
 
   <mat-form-field>
     <mat-label>Input amount</mat-label>
-    <input matInput formControlName="currency" currencyMask [options]="ngxCurrencyOption">
+    <input matInput formControlName="amount" currencyMask [options]="ngxCurrencyOption">
+    <mat-error *ngIf="amount.errors?.['required']">
+      Amount is required
+    </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button type="submit">Submit</button>
+  <button mat-raised-button [disabled]="!form.valid" type="submit">Submit</button>
 </form>
