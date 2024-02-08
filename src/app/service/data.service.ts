@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { Data } from '../data.model';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -15,13 +15,13 @@ export class DataService {
     const storedData = sessionStorage.getItem('storedValues');
     if (storedData) {
       this.storedData = JSON.parse(storedData);
-      this.storedDataSubject.next(this.storedData);
+      this.storedDataSubject.next(this.sortByDate(this.storedData));
     }
   }
 
   public storeValue(data: Data): void {
     this.storedData.push(data);
-    this.storedDataSubject.next(this.storedData);
+    this.storedDataSubject.next(this.sortByDate(this.storedData));
     sessionStorage.setItem('storedValues', JSON.stringify(this.storedData));
   }
 
@@ -29,5 +29,11 @@ export class DataService {
     this.storedData = [];
     this.storedDataSubject.next(this.storedData);
     sessionStorage.removeItem('storedValues');
+  }
+
+  private sortByDate(data: Data[]): Data[] {
+    return data.sort(
+      (a, b) => moment(a.date).valueOf() - moment(b.date).valueOf()
+    );
   }
 }
