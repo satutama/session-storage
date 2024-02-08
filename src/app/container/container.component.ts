@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 
 import { DataListComponent } from '../data-list/data-list.component';
 import { Data } from '../data.model';
@@ -14,7 +14,7 @@ import { DataService } from '../service/data.service';
   styleUrl: './container.component.css',
 })
 export class ContainerComponent {
-  public storedData: Data[] = this.dataService.storedData();
+  public storedData$: Signal<Data[]> = this.dataService.storedData;
 
   constructor(private dataService: DataService) {}
 
