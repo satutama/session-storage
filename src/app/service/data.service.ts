@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import moment from 'moment';
 import { BehaviorSubject, map } from 'rxjs';
 import { Data } from '../data.model';
 @Injectable({
@@ -35,7 +34,7 @@ export class DataService {
 
   private sortByDate(data: Data[]): Data[] {
     return data.sort(
-      (a, b) => moment(a.date).valueOf() - moment(b.date).valueOf()
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
   }
 }

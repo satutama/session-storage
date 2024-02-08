@@ -28,11 +28,18 @@
 
     <mat-form-field>
       <mat-label>Input amount</mat-label>
-      <input matInput formControlName="amount" currencyMask [options]="ngxCurrencyOption">
+      <span matTextPrefix>€&nbsp;&nbsp;</span>
+      <input type="number" matInput formControlName="amount">
 
       @if (form.controls['amount'].errors?.['required']) {
       <mat-error>
         Amount is required
+      </mat-error>
+      }
+
+      @if (form.controls['amount'].errors?.['min']) {
+      <mat-error>
+        Amount must be positive
       </mat-error>
       }
     </mat-form-field>

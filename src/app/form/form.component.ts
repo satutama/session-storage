@@ -11,9 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxCurrencyConfig, NgxCurrencyDirective } from 'ngx-currency';
 import { Data } from '../data.model';
-import { CURRENCY_CONFIG } from './utils/currency-option';
 import { MY_DATE_FORMAT } from './utils/my-date-format';
 
 @Component({
@@ -26,7 +24,6 @@ import { MY_DATE_FORMAT } from './utils/my-date-format';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    NgxCurrencyDirective,
   ],
   providers: [provideMomentDateAdapter(MY_DATE_FORMAT)],
   templateUrl: './form.component.html',
@@ -36,10 +33,9 @@ export class FormComponent {
   @Output() submitDataEvent = new EventEmitter<Data>();
 
   public minDate: Date = new Date(); // today's date
-  public ngxCurrencyOption: NgxCurrencyConfig = CURRENCY_CONFIG;
   public form: FormGroup = this.fb.group({
     date: [new Date(), Validators.required],
-    amount: [0, [Validators.required, Validators.min(0)]],
+    amount: ['', [Validators.required, Validators.min(0)]],
   });
 
   constructor(private fb: FormBuilder) {}
@@ -48,7 +44,7 @@ export class FormComponent {
     if (this.form.valid) {
       this.submitDataEvent.emit(this.form.value);
 
-      this.form.reset({ date: new Date(), amount: 0 });
+      this.form.reset({ date: new Date(), amount: '0' });
     }
   }
 }
