@@ -1,7 +1,11 @@
-.container {
-  form {
+form {
+  display: flex;
+  flex-direction: column;
+
+  .fields {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 8px;
   }
 }
 
@@ -10,7 +14,7 @@
 }
 
 button.submit {
-  margin-top: 20px;
+  margin-top: 12px;
   background-color: #df6d1c;
   color: white;
 }

@@ -1,7 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { MatButtonModule } from '@angular/material/button';
 import { Observable } from 'rxjs';
 import { DataListComponent } from '../data-list/data-list.component';
 import { Data } from '../data.model';
@@ -11,7 +10,7 @@ import { DataService } from '../service/data.service';
 @Component({
   selector: 'app-container',
   standalone: true,
-  imports: [CommonModule, FormComponent, DataListComponent, MatButtonModule],
+  imports: [AsyncPipe, FormComponent, DataListComponent],
   templateUrl: './container.component.html',
   styleUrl: './container.component.css',
 })

@@ -1,9 +1,4 @@
-<div class="container" *ngIf="storedData$ | async as storedData">
+<div class="container">
   <app-form (submitDataEvent)="submitDataEvent($event)"></app-form>
-
-  <button mat-raised-button class="clear-button" [disabled]="!storedData.length" (click)="clearData()">Clear Values</button>
-
-  <div class="data-container">
-    <app-data-list [storedData]="storedData"></app-data-list>
-  </div>
+  <app-data-list [storedData]="(storedData$ | async) ?? []" (clearDataEvent)="clearData()"></app-data-list>
 </div>

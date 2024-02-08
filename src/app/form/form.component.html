@@ -1,5 +1,5 @@
-<section class="container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="fields">
     <mat-form-field>
       <mat-label>Choose a date</mat-label>
       <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="date">
@@ -36,14 +36,8 @@
         Amount is required
       </mat-error>
       }
-
-      @if (form.controls['amount'].errors?.['min']) {
-      <mat-error>
-        Amount must be positive
-      </mat-error>
-      }
     </mat-form-field>
+  </div>
 
-    <button mat-raised-button class="submit" [disabled]="!form.valid" type="submit">Submit</button>
-  </form>
-</section>
+  <button mat-raised-button class="submit" [disabled]="!form.valid" type="submit">Submit</button>
+</form>

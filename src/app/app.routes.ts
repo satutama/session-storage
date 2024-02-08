@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/container', pathMatch: 'full' },
+  { path: '', redirectTo: '/session-storage', pathMatch: 'full' },
   {
-    path: 'container',
+    path: 'session-storage',
     loadComponent: () =>
       import('./container/container.component').then(
         (mod) => mod.ContainerComponent

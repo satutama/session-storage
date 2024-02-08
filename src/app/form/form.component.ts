@@ -35,7 +35,7 @@ export class FormComponent {
   public minDate: Date = new Date(); // today's date
   public form: FormGroup = this.fb.group({
     date: [new Date(), Validators.required],
-    amount: ['', [Validators.required, Validators.min(0)]],
+    amount: ['', Validators.required],
   });
 
   constructor(private fb: FormBuilder) {}
