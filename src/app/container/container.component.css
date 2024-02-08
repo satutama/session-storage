@@ -2,8 +2,13 @@
   display: flex;
   flex-direction: column;
   max-width: 400px;
-  margin: 0 auto;
+  margin: auto;
   padding: 0 12px;
+  border: 1px solid #00000029;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+  background: white;
 }
 
 button.clear-button {
