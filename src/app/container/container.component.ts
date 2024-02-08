@@ -1,7 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { Observable } from 'rxjs';
 import { DataListComponent } from '../data-list/data-list.component';
 import { Data } from '../data.model';
 import { FormComponent } from '../form/form.component';
@@ -15,7 +14,7 @@ import { DataService } from '../service/data.service';
   styleUrl: './container.component.css',
 })
 export class ContainerComponent {
-  public storedData$: Observable<Data[]> = this.dataService.storedData$;
+  public storedData: Data[] = this.dataService.storedData();
 
   constructor(private dataService: DataService) {}
 

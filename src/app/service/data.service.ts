@@ -1,34 +1,27 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { Injectable, computed, signal } from '@angular/core';
 import { Data } from '../data.model';
+
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private storedData: Data[] = [];
-  private storedDataSubject = new BehaviorSubject<Data[]>([]);
-
-  public storedData$ = this.storedDataSubject
-    .asObservable()
-    .pipe(map((data) => this.sortByDate(data)));
+  private signalData$ = signal<Data[]>([]);
+  public storedData = computed(() => this.sortByDate(this.signalData$()));
 
   constructor() {
     const storedData = sessionStorage.getItem('storedValues');
     if (storedData) {
-      this.storedData = JSON.parse(storedData);
-      this.storedDataSubject.next(this.storedData);
+      this.signalData$.set(JSON.parse(storedData));
     }
   }
 
   public storeValue(data: Data): void {
-    this.storedData.push(data);
-    this.storedDataSubject.next(this.storedData);
-    sessionStorage.setItem('storedValues', JSON.stringify(this.storedData));
+    this.signalData$.update((oldData) => [...oldData, data]);
+    sessionStorage.setItem('storedValues', JSON.stringify(this.signalData$()));
   }
 
   public clearValues(): void {
-    this.storedData = [];
-    this.storedDataSubject.next(this.storedData);
+    this.signalData$.set([]);
     sessionStorage.removeItem('storedValues');
   }
 

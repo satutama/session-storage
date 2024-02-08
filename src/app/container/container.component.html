@@ -1,4 +1,4 @@
 <div class="container">
   <app-form (submitDataEvent)="submitDataEvent($event)"></app-form>
-  <app-data-list [storedData]="(storedData$ | async) ?? []" (clearDataEvent)="clearData()"></app-data-list>
+  <app-data-list [storedData]="storedData" (clearDataEvent)="clearData()"></app-data-list>
 </div>
