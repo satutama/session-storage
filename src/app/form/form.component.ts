@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Data } from '../data.model';
+import { Data } from '@components/data.model';
 import { MY_DATE_FORMAT } from './utils/my-date-format';
 
 @Component({

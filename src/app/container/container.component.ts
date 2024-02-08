@@ -1,11 +1,11 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 
+import { DataListComponent } from '@components/data-list/data-list.component';
+import { Data } from '@components/data.model';
+import { FormComponent } from '@components/form/form.component';
+import { DataService } from '@service/data.service';
 import { Observable } from 'rxjs';
-import { DataListComponent } from '../data-list/data-list.component';
-import { Data } from '../data.model';
-import { FormComponent } from '../form/form.component';
-import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-container',
