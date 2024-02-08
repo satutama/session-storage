@@ -1,5 +1,4 @@
 .container {
-  margin-top: 40px;
   form {
     display: flex;
     flex-direction: column;
@@ -11,6 +10,7 @@
 }
 
 button.submit {
+  margin-top: 20px;
   background-color: #df6d1c;
   color: white;
 }
