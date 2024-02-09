@@ -1,7 +1,7 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { Data } from '../data.model';
+import { Data } from '@components/data.model';
 
 @Component({
   selector: 'app-data-list',

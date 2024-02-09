@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormComponent } from './form.component';
 
 describe('FormComponent', () => {
@@ -8,10 +10,9 @@ describe('FormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormComponent]
-    })
-    .compileComponents();
-    
+      imports: [FormComponent, CommonModule, BrowserAnimationsModule],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
