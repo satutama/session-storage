@@ -51,7 +51,7 @@ There should also be a button to clear the list.
 
 ## What I learned
 
-- Session storage survives over tab restores (CTRL + Shift + T).\
+- Session storage survives over tab restores (CTRL + Shift + T).
 - Using the formGroupDirective to reset the form instead of calling this.form.reset. Function become more pure and the validation also being reset.
 - I've tried Tailwind in my other projects and I can definitely say that I was longing to use the tailwind in this project.
 - Using BreakpointObserver for different screen view (in form component). Another reason why I think Tailwind is a better way for responsive design.
