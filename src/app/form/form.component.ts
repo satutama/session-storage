@@ -1,8 +1,10 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
+  FormGroupDirective,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -38,13 +40,17 @@ export class FormComponent {
     amount: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder) {}
+  public isXSmallView = this.responsive.observe(Breakpoints.XSmall);
 
-  public onSubmit() {
+  constructor(
+    private fb: FormBuilder,
+    private responsive: BreakpointObserver
+  ) {}
+
+  public onSubmit(formGroupDirective: FormGroupDirective) {
     if (this.form.valid) {
       this.submitDataEvent.emit(this.form.value);
-
-      this.form.reset({ date: new Date(), amount: '0' });
+      formGroupDirective.resetForm({ date: new Date() });
     }
   }
 }

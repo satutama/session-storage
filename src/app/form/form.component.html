@@ -1,5 +1,5 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="fields">
+<form [formGroup]="form" #formGroupDirective="ngForm" (ngSubmit)="onSubmit(formGroupDirective)">
+  <div class="fields" [ngClass]="{'x-small-view': (isXSmallView |async)?.matches}">
     <mat-form-field>
       <mat-label>Choose a date</mat-label>
       <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="date">
@@ -24,7 +24,6 @@
       </mat-error>
       }
     </mat-form-field>
-
 
     <mat-form-field>
       <mat-label>Input amount</mat-label>
